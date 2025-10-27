@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Prova1
 {
-    internal class moto
+    class moto : Veicolo
     {
-        public string Targa { get; set; }
-        private string Marca { get; set; }
-        private int Anno { get; set; }
+        public bool HaSidecar { get; set; }
 
-        public moto(string Targa, string Marca, int Anno)
+        public moto(string marca, string modello, int anno, bool haSidecar)
+            : base(marca, modello, anno)
         {
-            this.Targa = Targa;
-            this.Marca = Marca;
-            this.Anno = Anno;
+            HaSidecar = haSidecar;
         }
 
-        public virtual void MostraDettagli()
+        public override void MostraInfo()
         {
-            Console.WriteLine($"Veicolo:{Marca} {Targa}, Anno:{Anno}");
+            string sidecar = HaSidecar ? "con sidecar" : "senza sidecar";
+            Console.WriteLine($"Moto: {Marca} {Modello}, Anno: {Anno}, {sidecar}");
         }
     }
 }
